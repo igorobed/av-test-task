@@ -12,6 +12,10 @@ stops = en_stops | ru_stops
 
 
 def simple_tokenizer(in_str: str) -> List[str]:
+    """
+    Простая токенизация по символам и отдельным словам с удалением символов и стоп-слов
+    на русском и английском языках
+    """
     temp_tokenize = [item for item in wordpunct_tokenize(in_str) if item not in punctuation]
     return [item for item in temp_tokenize if item not in stops]
 
