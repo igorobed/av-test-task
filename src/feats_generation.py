@@ -1,4 +1,6 @@
 import pandas as pd
+from typing import List
+from sentence_transformers import SentenceTransformer
 
 
 def ohe(data: pd.DataFrame, column: str, drop_orig_column=True) -> pd.DataFrame:
@@ -56,6 +58,14 @@ def encode_work_days(data: pd.DataFrame, column: str="commit_date", type_enc: st
 
     return data
 
+
+
+def pretrained_model_sentence_emb(list_sents: List[str]) -> List[List[float]]:
+    """
+    Получение эмбеддингов предложений с помощью предобученной языковой модели
+    """
+    model = SentenceTransformer('sentence-transformers/distiluse-base-multilingual-cased-v1')
+    return model.encode(list_sents)
 
 
 if __name__ == "__main__":
